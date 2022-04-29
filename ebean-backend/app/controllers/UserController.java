@@ -7,6 +7,8 @@ import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
 
+import java.util.List;
+
 
 /**
  * @description: user reg/login
@@ -64,4 +66,17 @@ public class UserController extends Controller {
         return ok(result);
     }
 
+    // get user
+    public Result getUser(Long user_id) {
+        System.out.println("In getUser");
+        User user = User.findById(user_id);
+        return ok(Json.toJson(user));
+    }
+    //Get users
+    public Result getUsers() {
+        System.out.println("Getting users");
+        List<User> u = User.list();
+        return ok(Json.toJson(u));
+    }
+//    public class
 }
