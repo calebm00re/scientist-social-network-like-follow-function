@@ -29,4 +29,16 @@ public class User extends Model {
                 .eq("username", name)
                 .findUnique();
     }
+    //find by user id
+    public static User findById(Long id) {
+        return User.find
+                .where()
+                .eq("id", id)
+                .findUnique();
+    }
+    public static List<User> list() {
+        return User.find
+                .where()
+                .findList();
+    }
 }
