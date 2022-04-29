@@ -1,7 +1,7 @@
-import { useTheme } from '@mui/material/styles';
-import { Grid, Container, Typography } from '@mui/material';
+import { useTheme } from "@mui/material/styles";
+import { Grid, Container, Typography } from "@mui/material";
 // components
-import Page from '../components/Page';
+import Page from "../components/Page";
 export default function DashboardApp() {
   const theme = useTheme();
 
