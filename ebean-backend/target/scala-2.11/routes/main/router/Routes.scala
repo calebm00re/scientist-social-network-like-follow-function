@@ -1,7 +1,7 @@
 
 // @GENERATOR:play-routes-compiler
 // @SOURCE:C:/Users/tmols/Desktop/SWE/scientist-social-network-like-follow-function/ebean-backend/conf/routes
-// @DATE:Sun May 01 15:59:09 CDT 2022
+// @DATE:Sun May 01 16:26:40 CDT 2022
 
 package router
 
@@ -59,6 +59,7 @@ class Routes(
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """documents""", """controllers.DocumentController.getDocuments"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """documents/""" + "$" + """document_id<[^/]+>""", """controllers.DocumentController.getDocument(document_id:Long)"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """likes""", """controllers.LikesController.getLikes"""),
+    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """likes/""" + "$" + """user_id<[^/]+>""", """controllers.LikesController.getLikesbyId(user_id:Long)"""),
     Nil
   ).foldLeft(List.empty[(String,String,String)]) { (s,e) => e.asInstanceOf[Any] match {
     case r @ (_,_,_) => s :+ r.asInstanceOf[(String,String,String)]
@@ -202,6 +203,23 @@ class Routes(
     )
   )
 
+  // @LINE:31
+  private[this] lazy val controllers_LikesController_getLikesbyId8_route = Route("GET",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("likes/"), DynamicPart("user_id", """[^/]+""",true)))
+  )
+  private[this] lazy val controllers_LikesController_getLikesbyId8_invoker = createInvoker(
+    LikesController_3.getLikesbyId(fakeValue[Long]),
+    HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.LikesController",
+      "getLikesbyId",
+      Seq(classOf[Long]),
+      "GET",
+      """Get all likes by a user""",
+      this.prefix + """likes/""" + "$" + """user_id<[^/]+>"""
+    )
+  )
+
 
   def routes: PartialFunction[RequestHeader, Handler] = {
   
@@ -251,6 +269,12 @@ class Routes(
     case controllers_LikesController_getLikes7_route(params) =>
       call { 
         controllers_LikesController_getLikes7_invoker.call(LikesController_3.getLikes)
+      }
+  
+    // @LINE:31
+    case controllers_LikesController_getLikesbyId8_route(params) =>
+      call(params.fromPath[Long]("user_id", None)) { (user_id) =>
+        controllers_LikesController_getLikesbyId8_invoker.call(LikesController_3.getLikesbyId(user_id))
       }
   }
 }

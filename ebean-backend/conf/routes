@@ -27,7 +27,8 @@ GET     /documents/:document_id         controllers.DocumentController.getDocume
 #Get all likes
 GET    /likes                        controllers.LikesController.getLikes
 
-
+#Get all likes by a user
+GET     /likes/:user_id                 controllers.LikesController.getLikesbyId(user_id: Long)
 
 
 

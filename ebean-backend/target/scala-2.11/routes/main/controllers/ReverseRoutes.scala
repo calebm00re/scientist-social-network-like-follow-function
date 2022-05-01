@@ -1,7 +1,7 @@
 
 // @GENERATOR:play-routes-compiler
 // @SOURCE:C:/Users/tmols/Desktop/SWE/scientist-social-network-like-follow-function/ebean-backend/conf/routes
-// @DATE:Sun May 01 15:59:09 CDT 2022
+// @DATE:Sun May 01 16:26:40 CDT 2022
 
 import play.api.mvc.{ QueryStringBindable, PathBindable, Call, JavascriptLiteral }
 import play.core.routing.{ HandlerDef, ReverseRouteContext, queryString, dynamicString }
@@ -60,6 +60,12 @@ package controllers {
     def getLikes(): Call = {
       import ReverseRouteContext.empty
       Call("GET", _prefix + { _defaultPrefix } + "likes")
+    }
+  
+    // @LINE:31
+    def getLikesbyId(user_id:Long): Call = {
+      import ReverseRouteContext.empty
+      Call("GET", _prefix + { _defaultPrefix } + "likes/" + implicitly[PathBindable[Long]].unbind("user_id", user_id))
     }
   
   }
