@@ -12,3 +12,22 @@ POST     /login                      controllers.UserController.authenticate()
 # Add User  {"name":name, "password":password}
 POST    /signup                      controllers.UserController.registerNew()
 
+#Get User
+GET     /users                        controllers.UserController.getUsers
+
+
+#Get User
+#GET     /users/:id                    controllers.UserController.getUser(user_id: Long)
+
+
+#Get all documents
+GET    /documents                    controllers.DocumentController.getDocuments
+
+#Get all likes
+GET    /likes                        controllers.LikesController.getLikes
+
+
+
+
+
+

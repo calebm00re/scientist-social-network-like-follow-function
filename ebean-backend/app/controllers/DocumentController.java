@@ -15,9 +15,10 @@ public class DocumentController extends Controller {
 
     //getDocuments
     public Result getDocuments() {
-        System.out.println("Getting users");
-        List<Document> docs = Document.findAll();
-        return ok(Json.toJson(docs));
-
+        System.out.println("Getting documents");
+        List<Document> u = Document.list();
+        return ok(Json.toJson(u));
     }
+
+
 }

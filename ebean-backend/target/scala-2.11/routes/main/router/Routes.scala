@@ -1,7 +1,7 @@
 
 // @GENERATOR:play-routes-compiler
-// @SOURCE:/Users/loganschmitt/scientist-social-network-like-follow-function/ebean-backend/conf/routes
-// @DATE:Fri Apr 29 15:47:14 CDT 2022
+// @SOURCE:C:/Users/tmols/Desktop/SWE/scientist-social-network-like-follow-function/ebean-backend/conf/routes
+// @DATE:Sun May 01 15:30:20 CDT 2022
 
 package router
 
@@ -20,6 +20,10 @@ class Routes(
   HomeController_0: controllers.HomeController,
   // @LINE:9
   UserController_1: controllers.UserController,
+  // @LINE:24
+  DocumentController_2: controllers.DocumentController,
+  // @LINE:27
+  LikesController_3: controllers.LikesController,
   val prefix: String
 ) extends GeneratedRouter {
 
@@ -28,14 +32,18 @@ class Routes(
     // @LINE:6
     HomeController_0: controllers.HomeController,
     // @LINE:9
-    UserController_1: controllers.UserController
-  ) = this(errorHandler, HomeController_0, UserController_1, "/")
+    UserController_1: controllers.UserController,
+    // @LINE:24
+    DocumentController_2: controllers.DocumentController,
+    // @LINE:27
+    LikesController_3: controllers.LikesController
+  ) = this(errorHandler, HomeController_0, UserController_1, DocumentController_2, LikesController_3, "/")
 
   import ReverseRouteContext.empty
 
   def withPrefix(prefix: String): Routes = {
     router.RoutesPrefix.setPrefix(prefix)
-    new Routes(errorHandler, HomeController_0, UserController_1, prefix)
+    new Routes(errorHandler, HomeController_0, UserController_1, DocumentController_2, LikesController_3, prefix)
   }
 
   private[this] val defaultPrefix: String = {
@@ -46,6 +54,9 @@ class Routes(
     ("""GET""", this.prefix, """controllers.HomeController.index"""),
     ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """login""", """controllers.UserController.authenticate()"""),
     ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """signup""", """controllers.UserController.registerNew()"""),
+    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """users""", """controllers.UserController.getUsers"""),
+    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """documents""", """controllers.DocumentController.getDocuments"""),
+    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """likes""", """controllers.LikesController.getLikes"""),
     Nil
   ).foldLeft(List.empty[(String,String,String)]) { (s,e) => e.asInstanceOf[Any] match {
     case r @ (_,_,_) => s :+ r.asInstanceOf[(String,String,String)]
@@ -104,6 +115,57 @@ class Routes(
     )
   )
 
+  // @LINE:16
+  private[this] lazy val controllers_UserController_getUsers3_route = Route("GET",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("users")))
+  )
+  private[this] lazy val controllers_UserController_getUsers3_invoker = createInvoker(
+    UserController_1.getUsers,
+    HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.UserController",
+      "getUsers",
+      Nil,
+      "GET",
+      """Get User""",
+      this.prefix + """users"""
+    )
+  )
+
+  // @LINE:24
+  private[this] lazy val controllers_DocumentController_getDocuments4_route = Route("GET",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("documents")))
+  )
+  private[this] lazy val controllers_DocumentController_getDocuments4_invoker = createInvoker(
+    DocumentController_2.getDocuments,
+    HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.DocumentController",
+      "getDocuments",
+      Nil,
+      "GET",
+      """Get all documents""",
+      this.prefix + """documents"""
+    )
+  )
+
+  // @LINE:27
+  private[this] lazy val controllers_LikesController_getLikes5_route = Route("GET",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("likes")))
+  )
+  private[this] lazy val controllers_LikesController_getLikes5_invoker = createInvoker(
+    LikesController_3.getLikes,
+    HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.LikesController",
+      "getLikes",
+      Nil,
+      "GET",
+      """Get all likes""",
+      this.prefix + """likes"""
+    )
+  )
+
 
   def routes: PartialFunction[RequestHeader, Handler] = {
   
@@ -123,6 +185,24 @@ class Routes(
     case controllers_UserController_registerNew2_route(params) =>
       call { 
         controllers_UserController_registerNew2_invoker.call(UserController_1.registerNew())
+      }
+  
+    // @LINE:16
+    case controllers_UserController_getUsers3_route(params) =>
+      call { 
+        controllers_UserController_getUsers3_invoker.call(UserController_1.getUsers)
+      }
+  
+    // @LINE:24
+    case controllers_DocumentController_getDocuments4_route(params) =>
+      call { 
+        controllers_DocumentController_getDocuments4_invoker.call(DocumentController_2.getDocuments)
+      }
+  
+    // @LINE:27
+    case controllers_LikesController_getLikes5_route(params) =>
+      call { 
+        controllers_LikesController_getLikes5_invoker.call(LikesController_3.getLikes)
       }
   }
 }

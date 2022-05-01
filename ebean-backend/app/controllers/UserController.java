@@ -72,11 +72,12 @@ public class UserController extends Controller {
         User user = User.findById(user_id);
         return ok(Json.toJson(user));
     }
+
     //Get users
     public Result getUsers() {
         System.out.println("Getting users");
         List<User> u = User.list();
         return ok(Json.toJson(u));
     }
-//    public class
+
 }

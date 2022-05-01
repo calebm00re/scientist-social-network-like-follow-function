@@ -8,6 +8,7 @@ import Likes from "./pages/Likes";
 import NotFound from "./pages/Page404";
 import Follows from "./pages/Follows";
 import Home from "./pages/Home";
+import Login from "./pages/Login";
 
 // ----------------------------------------------------------------------
 
@@ -17,6 +18,7 @@ export default function Router() {
       path: "/",
       element: <DashboardLayout />,
       children: [
+        { path: "", element: <Login />},
         { path: "Home", element: <Home /> },
         { path: "Likes", element: <Likes /> },
         { path: "Follows", element: <Follows /> },

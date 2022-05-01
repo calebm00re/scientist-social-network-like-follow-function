@@ -6,9 +6,12 @@ import play.data.validation.Constraints;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.print.Doc;
 import java.util.List;
 
-public class Document {
+@Entity
+public class Document extends Model {
+    //private static final long serialVersionUID = 1L;
 
     @Id
     public Long document_id;
@@ -24,12 +27,16 @@ public class Document {
 
     public static Model.Find<Long, Document> find = new Model.Find<Long, Document>(){};
 
-    public static List<Document> findAll() {
-        return find.all();
-    }
 
-    public static Document findById(Long id) {
-        return find.byId(id);
+//
+//    public static Document findById(Long id) {
+//        return find.byId(id);
+//    }
+
+    public static List<Document> list() {
+        return Document.find
+                .where()
+                .findList();
     }
 
 }

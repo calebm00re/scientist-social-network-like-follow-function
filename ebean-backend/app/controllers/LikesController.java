@@ -14,7 +14,7 @@ public class LikesController extends Controller {
 
     public Result getLikes() {
         System.out.println("Getting users");
-        List<Likes> likes = Likes.getLikes();
+        List<Likes> likes = Likes.list();
         return ok(Json.toJson(likes));
     }
 }
