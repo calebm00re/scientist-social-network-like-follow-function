@@ -1,7 +1,7 @@
 
 // @GENERATOR:play-routes-compiler
 // @SOURCE:C:/Users/tmols/Desktop/SWE/scientist-social-network-like-follow-function/ebean-backend/conf/routes
-// @DATE:Sun May 01 15:30:20 CDT 2022
+// @DATE:Sun May 01 15:59:09 CDT 2022
 
 import play.api.routing.JavaScriptReverseRoute
 import play.api.mvc.{ QueryStringBindable, PathBindable, Call, JavascriptLiteral }
@@ -35,7 +35,7 @@ package controllers.javascript {
   
   }
 
-  // @LINE:24
+  // @LINE:22
   class ReverseDocumentController(_prefix: => String) {
 
     def _defaultPrefix: String = {
@@ -43,7 +43,7 @@ package controllers.javascript {
     }
 
   
-    // @LINE:24
+    // @LINE:22
     def getDocuments: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.DocumentController.getDocuments",
       """
@@ -53,9 +53,19 @@ package controllers.javascript {
       """
     )
   
+    // @LINE:25
+    def getDocument: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.DocumentController.getDocument",
+      """
+        function(document_id0) {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "documents/" + (""" + implicitly[PathBindable[Long]].javascriptUnbind + """)("document_id", document_id0)})
+        }
+      """
+    )
+  
   }
 
-  // @LINE:27
+  // @LINE:28
   class ReverseLikesController(_prefix: => String) {
 
     def _defaultPrefix: String = {
@@ -63,7 +73,7 @@ package controllers.javascript {
     }
 
   
-    // @LINE:27
+    // @LINE:28
     def getLikes: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.LikesController.getLikes",
       """
@@ -83,7 +93,17 @@ package controllers.javascript {
     }
 
   
-    // @LINE:16
+    // @LINE:19
+    def getUser: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.UserController.getUser",
+      """
+        function(id0) {
+          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "users/" + (""" + implicitly[PathBindable[Long]].javascriptUnbind + """)("id", id0)})
+        }
+      """
+    )
+  
+    // @LINE:15
     def getUsers: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.UserController.getUsers",
       """
@@ -103,7 +123,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:13
+    // @LINE:12
     def registerNew: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.UserController.registerNew",
       """

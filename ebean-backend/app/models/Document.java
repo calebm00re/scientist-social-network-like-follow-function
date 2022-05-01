@@ -33,6 +33,13 @@ public class Document extends Model {
 //        return find.byId(id);
 //    }
 
+    public static Document findById(Long document_id) {
+        return Document.find
+                .where()
+                .eq("document_id", document_id)
+                .findUnique();
+    }
+
     public static List<Document> list() {
         return Document.find
                 .where()

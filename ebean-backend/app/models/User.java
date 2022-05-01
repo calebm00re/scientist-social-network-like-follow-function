@@ -36,6 +36,8 @@ public class User extends Model {
                 .eq("id", id)
                 .findUnique();
     }
+
+
     public static List<User> list() {
         return User.find
                 .where()

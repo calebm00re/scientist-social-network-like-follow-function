@@ -8,7 +8,6 @@ GET     /                           controllers.HomeController.index
 #Login
 POST     /login                      controllers.UserController.authenticate()
 
-
 # Add User  {"name":name, "password":password}
 POST    /signup                      controllers.UserController.registerNew()
 
@@ -17,14 +16,17 @@ GET     /users                        controllers.UserController.getUsers
 
 
 #Get User
-#GET     /users/:id                    controllers.UserController.getUser(user_id: Long)
-
+GET     /users/:id                       controllers.UserController.getUser(id: Long)
 
 #Get all documents
 GET    /documents                    controllers.DocumentController.getDocuments
 
+#Get document by document_id
+GET     /documents/:document_id         controllers.DocumentController.getDocument(document_id: Long)
+
 #Get all likes
 GET    /likes                        controllers.LikesController.getLikes
+
 
 
 

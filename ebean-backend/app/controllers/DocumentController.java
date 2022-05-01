@@ -15,10 +15,15 @@ public class DocumentController extends Controller {
 
     //getDocuments
     public Result getDocuments() {
-        System.out.println("Getting documents");
+        System.out.println("Getting Documents");
         List<Document> u = Document.list();
         return ok(Json.toJson(u));
     }
 
-
+    //get document by id
+    public Result getDocument(Long document_id) {
+        System.out.println("Getting Document");
+        Document u = Document.findById(document_id);
+        return ok(Json.toJson(u));
+    }
 }

@@ -67,10 +67,10 @@ public class UserController extends Controller {
     }
 
     // get user
-    public Result getUser(Long user_id) {
-        System.out.println("In getUser");
-        User user = User.findById(user_id);
-        return ok(Json.toJson(user));
+    public Result getUser(Long id) {
+        System.out.println("Getting user");
+        User u = User.findById(id);
+        return ok(Json.toJson(u));
     }
 
     //Get users

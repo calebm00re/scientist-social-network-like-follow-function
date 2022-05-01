@@ -30,4 +30,11 @@ public class Likes {
                 .findList();
     }
 
+//    public static Likes findById(Long user_id) {
+//        return Likes.find
+//                .where()
+//                .eq("user_id", user_id)
+//                .findList();
+//    }
+
 }

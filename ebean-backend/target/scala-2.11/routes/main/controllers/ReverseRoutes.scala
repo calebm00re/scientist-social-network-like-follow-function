@@ -1,7 +1,7 @@
 
 // @GENERATOR:play-routes-compiler
 // @SOURCE:C:/Users/tmols/Desktop/SWE/scientist-social-network-like-follow-function/ebean-backend/conf/routes
-// @DATE:Sun May 01 15:30:20 CDT 2022
+// @DATE:Sun May 01 15:59:09 CDT 2022
 
 import play.api.mvc.{ QueryStringBindable, PathBindable, Call, JavascriptLiteral }
 import play.core.routing.{ HandlerDef, ReverseRouteContext, queryString, dynamicString }
@@ -28,29 +28,35 @@ package controllers {
   
   }
 
-  // @LINE:24
+  // @LINE:22
   class ReverseDocumentController(_prefix: => String) {
     def _defaultPrefix: String = {
       if (_prefix.endsWith("/")) "" else "/"
     }
 
   
-    // @LINE:24
+    // @LINE:22
     def getDocuments(): Call = {
       import ReverseRouteContext.empty
       Call("GET", _prefix + { _defaultPrefix } + "documents")
     }
   
+    // @LINE:25
+    def getDocument(document_id:Long): Call = {
+      import ReverseRouteContext.empty
+      Call("GET", _prefix + { _defaultPrefix } + "documents/" + implicitly[PathBindable[Long]].unbind("document_id", document_id))
+    }
+  
   }
 
-  // @LINE:27
+  // @LINE:28
   class ReverseLikesController(_prefix: => String) {
     def _defaultPrefix: String = {
       if (_prefix.endsWith("/")) "" else "/"
     }
 
   
-    // @LINE:27
+    // @LINE:28
     def getLikes(): Call = {
       import ReverseRouteContext.empty
       Call("GET", _prefix + { _defaultPrefix } + "likes")
@@ -65,7 +71,13 @@ package controllers {
     }
 
   
-    // @LINE:16
+    // @LINE:19
+    def getUser(id:Long): Call = {
+      import ReverseRouteContext.empty
+      Call("GET", _prefix + { _defaultPrefix } + "users/" + implicitly[PathBindable[Long]].unbind("id", id))
+    }
+  
+    // @LINE:15
     def getUsers(): Call = {
       import ReverseRouteContext.empty
       Call("GET", _prefix + { _defaultPrefix } + "users")
@@ -77,7 +89,7 @@ package controllers {
       Call("POST", _prefix + { _defaultPrefix } + "login")
     }
   
-    // @LINE:13
+    // @LINE:12
     def registerNew(): Call = {
       import ReverseRouteContext.empty
       Call("POST", _prefix + { _defaultPrefix } + "signup")

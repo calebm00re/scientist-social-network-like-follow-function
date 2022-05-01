@@ -1,7 +1,7 @@
 
 // @GENERATOR:play-routes-compiler
 // @SOURCE:C:/Users/tmols/Desktop/SWE/scientist-social-network-like-follow-function/ebean-backend/conf/routes
-// @DATE:Sun May 01 15:30:20 CDT 2022
+// @DATE:Sun May 01 15:59:09 CDT 2022
 
 package router
 
@@ -20,9 +20,9 @@ class Routes(
   HomeController_0: controllers.HomeController,
   // @LINE:9
   UserController_1: controllers.UserController,
-  // @LINE:24
+  // @LINE:22
   DocumentController_2: controllers.DocumentController,
-  // @LINE:27
+  // @LINE:28
   LikesController_3: controllers.LikesController,
   val prefix: String
 ) extends GeneratedRouter {
@@ -33,9 +33,9 @@ class Routes(
     HomeController_0: controllers.HomeController,
     // @LINE:9
     UserController_1: controllers.UserController,
-    // @LINE:24
+    // @LINE:22
     DocumentController_2: controllers.DocumentController,
-    // @LINE:27
+    // @LINE:28
     LikesController_3: controllers.LikesController
   ) = this(errorHandler, HomeController_0, UserController_1, DocumentController_2, LikesController_3, "/")
 
@@ -55,7 +55,9 @@ class Routes(
     ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """login""", """controllers.UserController.authenticate()"""),
     ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """signup""", """controllers.UserController.registerNew()"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """users""", """controllers.UserController.getUsers"""),
+    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """users/""" + "$" + """id<[^/]+>""", """controllers.UserController.getUser(id:Long)"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """documents""", """controllers.DocumentController.getDocuments"""),
+    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """documents/""" + "$" + """document_id<[^/]+>""", """controllers.DocumentController.getDocument(document_id:Long)"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """likes""", """controllers.LikesController.getLikes"""),
     Nil
   ).foldLeft(List.empty[(String,String,String)]) { (s,e) => e.asInstanceOf[Any] match {
@@ -98,7 +100,7 @@ class Routes(
     )
   )
 
-  // @LINE:13
+  // @LINE:12
   private[this] lazy val controllers_UserController_registerNew2_route = Route("POST",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("signup")))
   )
@@ -115,7 +117,7 @@ class Routes(
     )
   )
 
-  // @LINE:16
+  // @LINE:15
   private[this] lazy val controllers_UserController_getUsers3_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("users")))
   )
@@ -132,11 +134,28 @@ class Routes(
     )
   )
 
-  // @LINE:24
-  private[this] lazy val controllers_DocumentController_getDocuments4_route = Route("GET",
+  // @LINE:19
+  private[this] lazy val controllers_UserController_getUser4_route = Route("GET",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("users/"), DynamicPart("id", """[^/]+""",true)))
+  )
+  private[this] lazy val controllers_UserController_getUser4_invoker = createInvoker(
+    UserController_1.getUser(fakeValue[Long]),
+    HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.UserController",
+      "getUser",
+      Seq(classOf[Long]),
+      "GET",
+      """Get User""",
+      this.prefix + """users/""" + "$" + """id<[^/]+>"""
+    )
+  )
+
+  // @LINE:22
+  private[this] lazy val controllers_DocumentController_getDocuments5_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("documents")))
   )
-  private[this] lazy val controllers_DocumentController_getDocuments4_invoker = createInvoker(
+  private[this] lazy val controllers_DocumentController_getDocuments5_invoker = createInvoker(
     DocumentController_2.getDocuments,
     HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -149,11 +168,28 @@ class Routes(
     )
   )
 
-  // @LINE:27
-  private[this] lazy val controllers_LikesController_getLikes5_route = Route("GET",
+  // @LINE:25
+  private[this] lazy val controllers_DocumentController_getDocument6_route = Route("GET",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("documents/"), DynamicPart("document_id", """[^/]+""",true)))
+  )
+  private[this] lazy val controllers_DocumentController_getDocument6_invoker = createInvoker(
+    DocumentController_2.getDocument(fakeValue[Long]),
+    HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.DocumentController",
+      "getDocument",
+      Seq(classOf[Long]),
+      "GET",
+      """Get document by document_id""",
+      this.prefix + """documents/""" + "$" + """document_id<[^/]+>"""
+    )
+  )
+
+  // @LINE:28
+  private[this] lazy val controllers_LikesController_getLikes7_route = Route("GET",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("likes")))
   )
-  private[this] lazy val controllers_LikesController_getLikes5_invoker = createInvoker(
+  private[this] lazy val controllers_LikesController_getLikes7_invoker = createInvoker(
     LikesController_3.getLikes,
     HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -181,28 +217,40 @@ class Routes(
         controllers_UserController_authenticate1_invoker.call(UserController_1.authenticate())
       }
   
-    // @LINE:13
+    // @LINE:12
     case controllers_UserController_registerNew2_route(params) =>
       call { 
         controllers_UserController_registerNew2_invoker.call(UserController_1.registerNew())
       }
   
-    // @LINE:16
+    // @LINE:15
     case controllers_UserController_getUsers3_route(params) =>
       call { 
         controllers_UserController_getUsers3_invoker.call(UserController_1.getUsers)
       }
   
-    // @LINE:24
-    case controllers_DocumentController_getDocuments4_route(params) =>
-      call { 
-        controllers_DocumentController_getDocuments4_invoker.call(DocumentController_2.getDocuments)
+    // @LINE:19
+    case controllers_UserController_getUser4_route(params) =>
+      call(params.fromPath[Long]("id", None)) { (id) =>
+        controllers_UserController_getUser4_invoker.call(UserController_1.getUser(id))
       }
   
-    // @LINE:27
-    case controllers_LikesController_getLikes5_route(params) =>
+    // @LINE:22
+    case controllers_DocumentController_getDocuments5_route(params) =>
       call { 
-        controllers_LikesController_getLikes5_invoker.call(LikesController_3.getLikes)
+        controllers_DocumentController_getDocuments5_invoker.call(DocumentController_2.getDocuments)
+      }
+  
+    // @LINE:25
+    case controllers_DocumentController_getDocument6_route(params) =>
+      call(params.fromPath[Long]("document_id", None)) { (document_id) =>
+        controllers_DocumentController_getDocument6_invoker.call(DocumentController_2.getDocument(document_id))
+      }
+  
+    // @LINE:28
+    case controllers_LikesController_getLikes7_route(params) =>
+      call { 
+        controllers_LikesController_getLikes7_invoker.call(LikesController_3.getLikes)
       }
   }
 }

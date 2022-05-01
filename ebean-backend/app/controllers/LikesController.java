@@ -17,4 +17,10 @@ public class LikesController extends Controller {
         List<Likes> likes = Likes.list();
         return ok(Json.toJson(likes));
     }
+
+//    public Result getLikesbyId(Long user_id) {
+//        System.out.println("Getting users");
+//        List<Likes> likes = Likes.findById(user_id);
+//        return ok(Json.toJson(likes));
+//    }
 }
