@@ -28,14 +28,22 @@ POST     /documents/:document_id         controllers.DocumentController.getDocum
 
 #Get all likes
 POST    /likes                        controllers.LikesController.getLikes
-
-
+#Add Like
 POST   /addLike/:document_id          controllers.LikesController.addLike(document_id: Long)
-
-POST  /unlike/:document_id          controllers.LikesController.unlike(document_id: Long)
-
+#Unlike
+POST    /unlike/:document_id          controllers.LikesController.unlike(document_id: Long)
 #Get all likes by a user
 POST     /likes/:user_id                 controllers.LikesController.getLikesbyId(user_id: Long)
+
+
+#Get all likes
+POST    /follows                        controllers.FollowsController.getFollows
+#Add Like
+POST   /addFollow/:document_id          controllers.FollowsController.addFollow(document_id: Long)
+#Unlike
+POST    /unfollow/:document_id          controllers.FollowsController.unfollow(document_id: Long)
+#Get all likes by a user
+POST     /follows/:user_id                 controllers.FollowsController.getFollowsbyId(user_id: Long)
 
 
 

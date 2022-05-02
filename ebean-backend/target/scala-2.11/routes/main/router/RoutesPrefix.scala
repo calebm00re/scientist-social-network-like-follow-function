@@ -1,7 +1,7 @@
 
 // @GENERATOR:play-routes-compiler
 // @SOURCE:C:/Users/tmols/Desktop/SWE/scientist-social-network-like-follow-function/ebean-backend/conf/routes
-// @DATE:Mon May 02 00:08:51 CDT 2022
+// @DATE:Mon May 02 00:26:46 CDT 2022
 
 
 package router {
