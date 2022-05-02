@@ -13,6 +13,7 @@ Our files for out backend routes and functionality might need updating for futur
 
 ## How to run our functions
 
+console within the file directory like_follow:
 ```
 npm start
 ```
