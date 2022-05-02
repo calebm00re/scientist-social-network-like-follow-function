@@ -1,7 +1,7 @@
 
 // @GENERATOR:play-routes-compiler
 // @SOURCE:/Users/loganschmitt/scientist-social-network-like-follow-function/ebean-backend/conf/routes
-// @DATE:Sun May 01 21:44:02 CDT 2022
+// @DATE:Sun May 01 23:43:36 CDT 2022
 
 import play.api.routing.JavaScriptReverseRoute
 import play.api.mvc.{ QueryStringBindable, PathBindable, Call, JavascriptLiteral }
@@ -83,6 +83,16 @@ package controllers.javascript {
     }
 
   
+    // @LINE:35
+    def unlike: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.LikesController.unlike",
+      """
+        function(document_id0) {
+          return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "unlike/" + (""" + implicitly[PathBindable[Long]].javascriptUnbind + """)("document_id", document_id0)})
+        }
+      """
+    )
+  
     // @LINE:30
     def getLikes: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.LikesController.getLikes",
@@ -93,7 +103,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:34
+    // @LINE:38
     def getLikesbyId: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.LikesController.getLikesbyId",
       """
@@ -103,7 +113,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:32
+    // @LINE:33
     def addLike: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.LikesController.addLike",
       """

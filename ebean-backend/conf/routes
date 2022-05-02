@@ -29,7 +29,11 @@ POST     /documents/:document_id         controllers.DocumentController.getDocum
 #Get all likes
 POST    /likes                        controllers.LikesController.getLikes
 
+
 POST   /addLike/:document_id          controllers.LikesController.addLike(document_id: Long)
+
+POST  /unlike/:document_id          controllers.LikesController.unlike(document_id: Long)
+
 #Get all likes by a user
 POST     /likes/:user_id                 controllers.LikesController.getLikesbyId(user_id: Long)
 

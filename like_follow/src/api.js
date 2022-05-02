@@ -25,5 +25,16 @@ export class Api {
             method: "POST",
         }).then(res => res.json());
     }
+    
+    async addToLikes(document_id) {
+        return await fetch(`${URL}/addLike/${document_id}`, {
+            method: "POST",
+        }).then(res => res.json());
+    }
 
+    async removeFromLikes(document_id) {
+        return await fetch(`${URL}/unlike/${document_id}`, {
+            method: "POST",
+        }).then(res => res.json());
+    }
 }

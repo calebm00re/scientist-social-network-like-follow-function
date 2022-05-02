@@ -33,4 +33,30 @@ public class LikesController extends Controller {
         like.save();
         return ok(Json.toJson(like));
     }
-}
+
+//    public Result unfollow() {
+//        System.out.println("Unfollow a user");
+//        JsonNode req = request().body().asJson();
+//        User src = User.findById(req.get("user_id").asLong());
+//        User oth = User.findById(req.get("other_id").asLong());
+//
+//        if (src != null && oth != null) {
+//            Follow f = Follow.findByUsers(src.user_id, oth.user_id);
+//            if (f != null) {
+//                System.out.println("Can unfollow");
+//                f.delete();
+//                return ok("true");
+//            }
+//        }
+//        return ok("false");
+//    }
+
+    public Result unlike(Long document_id) {
+        Likes l = Likes.findLikeByDoc(document_id);
+        System.out.println(l);
+        if (l != null) {
+            l.delete();
+            return ok("true");
+        }
+        return ok("false");
+    }}

@@ -16,7 +16,7 @@ public class Likes extends Model {
     @ManyToMany(mappedBy = "User")
     public Long user_id;
 
-    @Constraints.Required
+    @Id
     @ManyToMany(mappedBy = "User")
     public Long document_id;
 
@@ -35,6 +35,14 @@ public class Likes extends Model {
                 .where()
                 .eq("user_id", user_id)
                 .findList();
+    }
+
+    public static Likes findLikeByDoc(Long document_id) {
+        return Likes.find
+                .where()
+                .eq("document_id", document_id)
+                .eq("user_id", 1)
+                .findUnique();
     }
 
 }

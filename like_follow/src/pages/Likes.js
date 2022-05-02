@@ -4,6 +4,7 @@ import Page from "../components/Page";
 import { Api } from "../api";
 import React, { useContext, useState, useEffect } from "react";
 import CardHeader from 'react-bootstrap/CardHeader';
+import {DocCard} from '../components/DocCard';
 
 export default function User() {
 
@@ -12,12 +13,15 @@ export default function User() {
   const [user, setUser] = useState(undefined);
   const [likes, setLikes] = useState(undefined);
 
-  const [documents, setDocuments] = useState(undefined);
+  let docs = [];
+
+  const documents = [];
+  var current_document = undefined;
 
   useEffect(() => {
     api.getUser(1).then(x => setUser(x));
     api.getLikes(1).then(x => setLikes(x));
-    
+    // populateDocs();
   }, []);
 
 
@@ -28,6 +32,14 @@ export default function User() {
       </div>
     )
   } else {
+    // console.log(likes.length);
+    // console.log(likes[0].user_id);
+    //iterate through likes and call api.getDocument(id)
+    likes.forEach(function(like) {
+      api.getDocument(like.document_id).then(x => docs.push(x));
+    });
+    // setDocuments(docs);
+    console.log(documents);
     // for (let i = 0; i < likes.length; i++) {
     //   api.getDocument(likes[i].document_id).then(x => setDocuments(x));
     // }
@@ -38,15 +50,11 @@ export default function User() {
           <h1>Likes</h1>
           <div className="card mb-4">
             <div className="card-body">
-              <p className="p-2">{user.username}</p>
+              <p className="p-2">Username: {user.username}</p>
               {
                 likes.map((x, i) =>
-                  <div key={i} className="card mb-4 d-flex">
-                    <CardHeader>{x.user_id}</CardHeader>
-                    <div className="card-body">
-                      <p className="p-2">{x.document_id}</p>
-                    
-                    </div>
+                  <div key={i}>
+                      <DocCard document_id={x.document_id} />
                   </div>
                 )}
             </div>

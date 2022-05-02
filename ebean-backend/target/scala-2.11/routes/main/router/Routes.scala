@@ -1,7 +1,7 @@
 
 // @GENERATOR:play-routes-compiler
 // @SOURCE:/Users/loganschmitt/scientist-social-network-like-follow-function/ebean-backend/conf/routes
-// @DATE:Sun May 01 21:44:02 CDT 2022
+// @DATE:Sun May 01 23:43:36 CDT 2022
 
 package router
 
@@ -61,6 +61,7 @@ class Routes(
     ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """documents/""" + "$" + """document_id<[^/]+>""", """controllers.DocumentController.getDocument(document_id:Long)"""),
     ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """likes""", """controllers.LikesController.getLikes"""),
     ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """addLike/""" + "$" + """document_id<[^/]+>""", """controllers.LikesController.addLike(document_id:Long)"""),
+    ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """unlike/""" + "$" + """document_id<[^/]+>""", """controllers.LikesController.unlike(document_id:Long)"""),
     ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """likes/""" + "$" + """user_id<[^/]+>""", """controllers.LikesController.getLikesbyId(user_id:Long)"""),
     Nil
   ).foldLeft(List.empty[(String,String,String)]) { (s,e) => e.asInstanceOf[Any] match {
@@ -222,7 +223,7 @@ class Routes(
     )
   )
 
-  // @LINE:32
+  // @LINE:33
   private[this] lazy val controllers_LikesController_addLike9_route = Route("POST",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("addLike/"), DynamicPart("document_id", """[^/]+""",true)))
   )
@@ -239,11 +240,28 @@ class Routes(
     )
   )
 
-  // @LINE:34
-  private[this] lazy val controllers_LikesController_getLikesbyId10_route = Route("POST",
+  // @LINE:35
+  private[this] lazy val controllers_LikesController_unlike10_route = Route("POST",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("unlike/"), DynamicPart("document_id", """[^/]+""",true)))
+  )
+  private[this] lazy val controllers_LikesController_unlike10_invoker = createInvoker(
+    LikesController_3.unlike(fakeValue[Long]),
+    HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.LikesController",
+      "unlike",
+      Seq(classOf[Long]),
+      "POST",
+      """""",
+      this.prefix + """unlike/""" + "$" + """document_id<[^/]+>"""
+    )
+  )
+
+  // @LINE:38
+  private[this] lazy val controllers_LikesController_getLikesbyId11_route = Route("POST",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("likes/"), DynamicPart("user_id", """[^/]+""",true)))
   )
-  private[this] lazy val controllers_LikesController_getLikesbyId10_invoker = createInvoker(
+  private[this] lazy val controllers_LikesController_getLikesbyId11_invoker = createInvoker(
     LikesController_3.getLikesbyId(fakeValue[Long]),
     HandlerDef(this.getClass.getClassLoader,
       "router",
@@ -313,16 +331,22 @@ class Routes(
         controllers_LikesController_getLikes8_invoker.call(LikesController_3.getLikes)
       }
   
-    // @LINE:32
+    // @LINE:33
     case controllers_LikesController_addLike9_route(params) =>
       call(params.fromPath[Long]("document_id", None)) { (document_id) =>
         controllers_LikesController_addLike9_invoker.call(LikesController_3.addLike(document_id))
       }
   
-    // @LINE:34
-    case controllers_LikesController_getLikesbyId10_route(params) =>
+    // @LINE:35
+    case controllers_LikesController_unlike10_route(params) =>
+      call(params.fromPath[Long]("document_id", None)) { (document_id) =>
+        controllers_LikesController_unlike10_invoker.call(LikesController_3.unlike(document_id))
+      }
+  
+    // @LINE:38
+    case controllers_LikesController_getLikesbyId11_route(params) =>
       call(params.fromPath[Long]("user_id", None)) { (user_id) =>
-        controllers_LikesController_getLikesbyId10_invoker.call(LikesController_3.getLikesbyId(user_id))
+        controllers_LikesController_getLikesbyId11_invoker.call(LikesController_3.getLikesbyId(user_id))
       }
   }
 }

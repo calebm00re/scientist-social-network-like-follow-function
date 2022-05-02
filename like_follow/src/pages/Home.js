@@ -1,4 +1,4 @@
-import { Grid, Container, Typography } from "@mui/material";
+import { Grid, Container, Typography, Button } from "@mui/material";
 import CardHeader from 'react-bootstrap/CardHeader';
 
 // components
@@ -11,6 +11,15 @@ export default function DashboardApp() {
   
   const api = new Api;
   const [documents, setDocuments] = useState(undefined);
+
+  const handleLike = (id) => {
+    api.addToLikes(id).then(res => console.log(res));
+  }
+
+  const handleDislike = (id) => {
+    api.removeFromLikes(id).then(res => console.log(res));
+    //api call for dislike
+  }
   
   useEffect(() => {
     api.getDocuments().then(x => setDocuments(x));
@@ -34,8 +43,11 @@ export default function DashboardApp() {
                 <div className="card-body">
                   <p className="p-2">{x.author}</p>
                   <p className="p-2">{x.text}</p>
-                  <a href="#" className="btn btn-success m-1">Like</a>
-                  <a href="#" className="btn btn-danger m-1">Dislike</a>
+                  <Button color="primary" variant="contained" onClick={() => handleLike(x.document_id)}>Like</Button>
+                  <Button className="m-2" color="error" variant="contained" onClick={() => handleDislike(x.document_id)}>Dislike</Button>
+                  {/* <Button color="danger" variant="contained" onClick={() => handleDislike(x.document_id)}>Dislike</Button> */}
+                  {/* <a href="#" className="btn btn-success m-1">Like</a>
+                  <a href="#" className="btn btn-danger m-1">Dislike</a> */}
                 </div>
           </div>
         )}

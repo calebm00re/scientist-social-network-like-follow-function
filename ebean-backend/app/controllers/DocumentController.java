@@ -13,10 +13,10 @@ import java.util.List;
 
 public class DocumentController extends Controller {
     public Result addDocument() {
-        Long id = 4L;
-        String title = "Scientific Study and its impact on the world";
-        String text = "Brief description of the study";
-        String author = "Dr. John Doe";
+        Long id = 1L;
+        String title = "Inception";
+        String text = "Best movie ever";
+        String author = "las";
 
 //        System.out.println("Follow a document");
         JsonNode req = request().body().asJson();

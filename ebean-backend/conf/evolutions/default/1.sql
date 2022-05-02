@@ -12,8 +12,9 @@ create table document (
 );
 
 create table likes (
+  document_id                   bigint auto_increment not null,
   user_id                       bigint,
-  document_id                   bigint
+  constraint pk_likes primary key (document_id)
 );
 
 create table user (
