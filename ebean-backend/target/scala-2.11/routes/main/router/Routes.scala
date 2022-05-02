@@ -1,7 +1,7 @@
 
 // @GENERATOR:play-routes-compiler
 // @SOURCE:/Users/loganschmitt/scientist-social-network-like-follow-function/ebean-backend/conf/routes
-// @DATE:Sun May 01 19:57:10 CDT 2022
+// @DATE:Sun May 01 21:44:02 CDT 2022
 
 package router
 
@@ -20,9 +20,9 @@ class Routes(
   HomeController_0: controllers.HomeController,
   // @LINE:9
   UserController_1: controllers.UserController,
-  // @LINE:22
+  // @LINE:21
   DocumentController_2: controllers.DocumentController,
-  // @LINE:31
+  // @LINE:30
   LikesController_3: controllers.LikesController,
   val prefix: String
 ) extends GeneratedRouter {
@@ -33,9 +33,9 @@ class Routes(
     HomeController_0: controllers.HomeController,
     // @LINE:9
     UserController_1: controllers.UserController,
-    // @LINE:22
+    // @LINE:21
     DocumentController_2: controllers.DocumentController,
-    // @LINE:31
+    // @LINE:30
     LikesController_3: controllers.LikesController
   ) = this(errorHandler, HomeController_0, UserController_1, DocumentController_2, LikesController_3, "/")
 
@@ -55,12 +55,13 @@ class Routes(
     ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """login""", """controllers.UserController.authenticate()"""),
     ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """signup""", """controllers.UserController.registerNew()"""),
     ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """users""", """controllers.UserController.getUsers"""),
-    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """users/""" + "$" + """id<[^/]+>""", """controllers.UserController.getUser(id:Long)"""),
+    ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """users/""" + "$" + """id<[^/]+>""", """controllers.UserController.getUser(id:Long)"""),
     ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """documents""", """controllers.DocumentController.getDocuments"""),
     ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """addDocument""", """controllers.DocumentController.addDocument"""),
-    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """documents/""" + "$" + """document_id<[^/]+>""", """controllers.DocumentController.getDocument(document_id:Long)"""),
-    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """likes""", """controllers.LikesController.getLikes"""),
-    ("""GET""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """likes/""" + "$" + """user_id<[^/]+>""", """controllers.LikesController.getLikesbyId(user_id:Long)"""),
+    ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """documents/""" + "$" + """document_id<[^/]+>""", """controllers.DocumentController.getDocument(document_id:Long)"""),
+    ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """likes""", """controllers.LikesController.getLikes"""),
+    ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """addLike/""" + "$" + """document_id<[^/]+>""", """controllers.LikesController.addLike(document_id:Long)"""),
+    ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """likes/""" + "$" + """user_id<[^/]+>""", """controllers.LikesController.getLikesbyId(user_id:Long)"""),
     Nil
   ).foldLeft(List.empty[(String,String,String)]) { (s,e) => e.asInstanceOf[Any] match {
     case r @ (_,_,_) => s :+ r.asInstanceOf[(String,String,String)]
@@ -136,8 +137,8 @@ class Routes(
     )
   )
 
-  // @LINE:19
-  private[this] lazy val controllers_UserController_getUser4_route = Route("GET",
+  // @LINE:18
+  private[this] lazy val controllers_UserController_getUser4_route = Route("POST",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("users/"), DynamicPart("id", """[^/]+""",true)))
   )
   private[this] lazy val controllers_UserController_getUser4_invoker = createInvoker(
@@ -147,13 +148,13 @@ class Routes(
       "controllers.UserController",
       "getUser",
       Seq(classOf[Long]),
-      "GET",
+      "POST",
       """Get User""",
       this.prefix + """users/""" + "$" + """id<[^/]+>"""
     )
   )
 
-  // @LINE:22
+  // @LINE:21
   private[this] lazy val controllers_DocumentController_getDocuments5_route = Route("POST",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("documents")))
   )
@@ -170,7 +171,7 @@ class Routes(
     )
   )
 
-  // @LINE:25
+  // @LINE:24
   private[this] lazy val controllers_DocumentController_addDocument6_route = Route("POST",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("addDocument")))
   )
@@ -187,8 +188,8 @@ class Routes(
     )
   )
 
-  // @LINE:28
-  private[this] lazy val controllers_DocumentController_getDocument7_route = Route("GET",
+  // @LINE:27
+  private[this] lazy val controllers_DocumentController_getDocument7_route = Route("POST",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("documents/"), DynamicPart("document_id", """[^/]+""",true)))
   )
   private[this] lazy val controllers_DocumentController_getDocument7_invoker = createInvoker(
@@ -198,14 +199,14 @@ class Routes(
       "controllers.DocumentController",
       "getDocument",
       Seq(classOf[Long]),
-      "GET",
+      "POST",
       """Get document by document_id""",
       this.prefix + """documents/""" + "$" + """document_id<[^/]+>"""
     )
   )
 
-  // @LINE:31
-  private[this] lazy val controllers_LikesController_getLikes8_route = Route("GET",
+  // @LINE:30
+  private[this] lazy val controllers_LikesController_getLikes8_route = Route("POST",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("likes")))
   )
   private[this] lazy val controllers_LikesController_getLikes8_invoker = createInvoker(
@@ -215,24 +216,41 @@ class Routes(
       "controllers.LikesController",
       "getLikes",
       Nil,
-      "GET",
+      "POST",
       """Get all likes""",
       this.prefix + """likes"""
     )
   )
 
+  // @LINE:32
+  private[this] lazy val controllers_LikesController_addLike9_route = Route("POST",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("addLike/"), DynamicPart("document_id", """[^/]+""",true)))
+  )
+  private[this] lazy val controllers_LikesController_addLike9_invoker = createInvoker(
+    LikesController_3.addLike(fakeValue[Long]),
+    HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.LikesController",
+      "addLike",
+      Seq(classOf[Long]),
+      "POST",
+      """""",
+      this.prefix + """addLike/""" + "$" + """document_id<[^/]+>"""
+    )
+  )
+
   // @LINE:34
-  private[this] lazy val controllers_LikesController_getLikesbyId9_route = Route("GET",
+  private[this] lazy val controllers_LikesController_getLikesbyId10_route = Route("POST",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("likes/"), DynamicPart("user_id", """[^/]+""",true)))
   )
-  private[this] lazy val controllers_LikesController_getLikesbyId9_invoker = createInvoker(
+  private[this] lazy val controllers_LikesController_getLikesbyId10_invoker = createInvoker(
     LikesController_3.getLikesbyId(fakeValue[Long]),
     HandlerDef(this.getClass.getClassLoader,
       "router",
       "controllers.LikesController",
       "getLikesbyId",
       Seq(classOf[Long]),
-      "GET",
+      "POST",
       """Get all likes by a user""",
       this.prefix + """likes/""" + "$" + """user_id<[^/]+>"""
     )
@@ -265,40 +283,46 @@ class Routes(
         controllers_UserController_getUsers3_invoker.call(UserController_1.getUsers)
       }
   
-    // @LINE:19
+    // @LINE:18
     case controllers_UserController_getUser4_route(params) =>
       call(params.fromPath[Long]("id", None)) { (id) =>
         controllers_UserController_getUser4_invoker.call(UserController_1.getUser(id))
       }
   
-    // @LINE:22
+    // @LINE:21
     case controllers_DocumentController_getDocuments5_route(params) =>
       call { 
         controllers_DocumentController_getDocuments5_invoker.call(DocumentController_2.getDocuments)
       }
   
-    // @LINE:25
+    // @LINE:24
     case controllers_DocumentController_addDocument6_route(params) =>
       call { 
         controllers_DocumentController_addDocument6_invoker.call(DocumentController_2.addDocument)
       }
   
-    // @LINE:28
+    // @LINE:27
     case controllers_DocumentController_getDocument7_route(params) =>
       call(params.fromPath[Long]("document_id", None)) { (document_id) =>
         controllers_DocumentController_getDocument7_invoker.call(DocumentController_2.getDocument(document_id))
       }
   
-    // @LINE:31
+    // @LINE:30
     case controllers_LikesController_getLikes8_route(params) =>
       call { 
         controllers_LikesController_getLikes8_invoker.call(LikesController_3.getLikes)
       }
   
+    // @LINE:32
+    case controllers_LikesController_addLike9_route(params) =>
+      call(params.fromPath[Long]("document_id", None)) { (document_id) =>
+        controllers_LikesController_addLike9_invoker.call(LikesController_3.addLike(document_id))
+      }
+  
     // @LINE:34
-    case controllers_LikesController_getLikesbyId9_route(params) =>
+    case controllers_LikesController_getLikesbyId10_route(params) =>
       call(params.fromPath[Long]("user_id", None)) { (user_id) =>
-        controllers_LikesController_getLikesbyId9_invoker.call(LikesController_3.getLikesbyId(user_id))
+        controllers_LikesController_getLikesbyId10_invoker.call(LikesController_3.getLikesbyId(user_id))
       }
   }
 }

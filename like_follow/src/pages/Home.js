@@ -1,8 +1,4 @@
-// import { useTheme } from "@mui/material/styles";
 import { Grid, Container, Typography } from "@mui/material";
-// import axios from 'axios';
-// import { URL } from '../utils/misc';
-import Card from 'react-bootstrap/Card';
 import CardHeader from 'react-bootstrap/CardHeader';
 
 // components

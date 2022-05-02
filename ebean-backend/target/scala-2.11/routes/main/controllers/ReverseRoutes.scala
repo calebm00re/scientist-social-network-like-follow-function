@@ -1,7 +1,7 @@
 
 // @GENERATOR:play-routes-compiler
 // @SOURCE:/Users/loganschmitt/scientist-social-network-like-follow-function/ebean-backend/conf/routes
-// @DATE:Sun May 01 19:57:10 CDT 2022
+// @DATE:Sun May 01 21:44:02 CDT 2022
 
 import play.api.mvc.{ QueryStringBindable, PathBindable, Call, JavascriptLiteral }
 import play.core.routing.{ HandlerDef, ReverseRouteContext, queryString, dynamicString }
@@ -28,50 +28,56 @@ package controllers {
   
   }
 
-  // @LINE:22
+  // @LINE:21
   class ReverseDocumentController(_prefix: => String) {
     def _defaultPrefix: String = {
       if (_prefix.endsWith("/")) "" else "/"
     }
 
   
-    // @LINE:22
+    // @LINE:21
     def getDocuments(): Call = {
       import ReverseRouteContext.empty
       Call("POST", _prefix + { _defaultPrefix } + "documents")
     }
   
-    // @LINE:25
+    // @LINE:24
     def addDocument(): Call = {
       import ReverseRouteContext.empty
       Call("POST", _prefix + { _defaultPrefix } + "addDocument")
     }
   
-    // @LINE:28
+    // @LINE:27
     def getDocument(document_id:Long): Call = {
       import ReverseRouteContext.empty
-      Call("GET", _prefix + { _defaultPrefix } + "documents/" + implicitly[PathBindable[Long]].unbind("document_id", document_id))
+      Call("POST", _prefix + { _defaultPrefix } + "documents/" + implicitly[PathBindable[Long]].unbind("document_id", document_id))
     }
   
   }
 
-  // @LINE:31
+  // @LINE:30
   class ReverseLikesController(_prefix: => String) {
     def _defaultPrefix: String = {
       if (_prefix.endsWith("/")) "" else "/"
     }
 
   
-    // @LINE:31
+    // @LINE:30
     def getLikes(): Call = {
       import ReverseRouteContext.empty
-      Call("GET", _prefix + { _defaultPrefix } + "likes")
+      Call("POST", _prefix + { _defaultPrefix } + "likes")
     }
   
     // @LINE:34
     def getLikesbyId(user_id:Long): Call = {
       import ReverseRouteContext.empty
-      Call("GET", _prefix + { _defaultPrefix } + "likes/" + implicitly[PathBindable[Long]].unbind("user_id", user_id))
+      Call("POST", _prefix + { _defaultPrefix } + "likes/" + implicitly[PathBindable[Long]].unbind("user_id", user_id))
+    }
+  
+    // @LINE:32
+    def addLike(document_id:Long): Call = {
+      import ReverseRouteContext.empty
+      Call("POST", _prefix + { _defaultPrefix } + "addLike/" + implicitly[PathBindable[Long]].unbind("document_id", document_id))
     }
   
   }
@@ -83,10 +89,10 @@ package controllers {
     }
 
   
-    // @LINE:19
+    // @LINE:18
     def getUser(id:Long): Call = {
       import ReverseRouteContext.empty
-      Call("GET", _prefix + { _defaultPrefix } + "users/" + implicitly[PathBindable[Long]].unbind("id", id))
+      Call("POST", _prefix + { _defaultPrefix } + "users/" + implicitly[PathBindable[Long]].unbind("id", id))
     }
   
     // @LINE:15

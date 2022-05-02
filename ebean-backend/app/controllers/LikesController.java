@@ -23,4 +23,14 @@ public class LikesController extends Controller {
         List<Likes> likes = Likes.findById(user_id);
         return ok(Json.toJson(likes));
     }
+
+    // Add a like
+    public Result addLike(Long document_id) {
+
+        Likes like = new Likes();
+        like.document_id = document_id;
+        like.user_id = 1L;
+        like.save();
+        return ok(Json.toJson(like));
+    }
 }

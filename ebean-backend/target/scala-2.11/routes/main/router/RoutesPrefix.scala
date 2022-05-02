@@ -1,7 +1,7 @@
 
 // @GENERATOR:play-routes-compiler
 // @SOURCE:/Users/loganschmitt/scientist-social-network-like-follow-function/ebean-backend/conf/routes
-// @DATE:Sun May 01 19:57:10 CDT 2022
+// @DATE:Sun May 01 21:44:02 CDT 2022
 
 
 package router {

@@ -1,7 +1,7 @@
 
 // @GENERATOR:play-routes-compiler
 // @SOURCE:/Users/loganschmitt/scientist-social-network-like-follow-function/ebean-backend/conf/routes
-// @DATE:Sun May 01 19:57:10 CDT 2022
+// @DATE:Sun May 01 21:44:02 CDT 2022
 
 import play.api.routing.JavaScriptReverseRoute
 import play.api.mvc.{ QueryStringBindable, PathBindable, Call, JavascriptLiteral }
@@ -35,7 +35,7 @@ package controllers.javascript {
   
   }
 
-  // @LINE:22
+  // @LINE:21
   class ReverseDocumentController(_prefix: => String) {
 
     def _defaultPrefix: String = {
@@ -43,7 +43,7 @@ package controllers.javascript {
     }
 
   
-    // @LINE:22
+    // @LINE:21
     def getDocuments: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.DocumentController.getDocuments",
       """
@@ -53,7 +53,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:25
+    // @LINE:24
     def addDocument: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.DocumentController.addDocument",
       """
@@ -63,19 +63,19 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:28
+    // @LINE:27
     def getDocument: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.DocumentController.getDocument",
       """
         function(document_id0) {
-          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "documents/" + (""" + implicitly[PathBindable[Long]].javascriptUnbind + """)("document_id", document_id0)})
+          return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "documents/" + (""" + implicitly[PathBindable[Long]].javascriptUnbind + """)("document_id", document_id0)})
         }
       """
     )
   
   }
 
-  // @LINE:31
+  // @LINE:30
   class ReverseLikesController(_prefix: => String) {
 
     def _defaultPrefix: String = {
@@ -83,12 +83,12 @@ package controllers.javascript {
     }
 
   
-    // @LINE:31
+    // @LINE:30
     def getLikes: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.LikesController.getLikes",
       """
         function() {
-          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "likes"})
+          return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "likes"})
         }
       """
     )
@@ -98,7 +98,17 @@ package controllers.javascript {
       "controllers.LikesController.getLikesbyId",
       """
         function(user_id0) {
-          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "likes/" + (""" + implicitly[PathBindable[Long]].javascriptUnbind + """)("user_id", user_id0)})
+          return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "likes/" + (""" + implicitly[PathBindable[Long]].javascriptUnbind + """)("user_id", user_id0)})
+        }
+      """
+    )
+  
+    // @LINE:32
+    def addLike: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.LikesController.addLike",
+      """
+        function(document_id0) {
+          return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "addLike/" + (""" + implicitly[PathBindable[Long]].javascriptUnbind + """)("document_id", document_id0)})
         }
       """
     )
@@ -113,12 +123,12 @@ package controllers.javascript {
     }
 
   
-    // @LINE:19
+    // @LINE:18
     def getUser: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.UserController.getUser",
       """
         function(id0) {
-          return _wA({method:"GET", url:"""" + _prefix + { _defaultPrefix } + """" + "users/" + (""" + implicitly[PathBindable[Long]].javascriptUnbind + """)("id", id0)})
+          return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "users/" + (""" + implicitly[PathBindable[Long]].javascriptUnbind + """)("id", id0)})
         }
       """
     )

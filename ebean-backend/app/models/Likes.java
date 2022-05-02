@@ -10,7 +10,7 @@ import javax.persistence.OneToMany;
 import java.util.List;
 
 @Entity
-public class Likes {
+public class Likes extends Model {
 
     @Constraints.Required
     @ManyToMany(mappedBy = "User")
