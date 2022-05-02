@@ -20,6 +20,24 @@ export default function DashboardApp() {
     api.removeFromLikes(id).then(res => console.log(res));
     //api call for dislike
   }
+
+  const handleFollow = (id) => {
+    api.addToFollows(id).then(res => console.log(res));
+  }
+
+  const handleUnfollow = (id) => {
+    api.removeFromFollows(id).then(res => console.log(res));
+    //api call for unfollow
+  }
+
+  const handleNotification = (id) => {
+    api.addNotification(id).then(res => console.log(res));
+  }
+
+  const handleUnnotification = (id) => {
+    api.removeNotification(id).then(res => console.log(res));
+    //api call for unnotification
+  }
   
   useEffect(() => {
     api.getDocuments().then(x => setDocuments(x));
@@ -39,15 +57,20 @@ export default function DashboardApp() {
             {
               documents.map((x, i) =>
               <div key={i} className= "card mb-4 d-flex">
-              <CardHeader>{x.title}</CardHeader>
+              <CardHeader>
+                {x.title}
+                <Button className="m-2 float-right space-between" color="grey" variant="contained" onClick={() => handleNotification(x.document_id)}>Alert</Button>
+                <Button className="m-2 float-right space-between" color="error" variant="contained" onClick={() => handleUnnotification(x.document_id)}>Remove Alert</Button>
+              </CardHeader>
                 <div className="card-body">
                   <p className="p-2">{x.author}</p>
                   <p className="p-2">{x.text}</p>
                   <Button color="primary" variant="contained" onClick={() => handleLike(x.document_id)}>Like</Button>
                   <Button className="m-2" color="error" variant="contained" onClick={() => handleDislike(x.document_id)}>Dislike</Button>
-                  {/* <Button color="danger" variant="contained" onClick={() => handleDislike(x.document_id)}>Dislike</Button> */}
-                  {/* <a href="#" className="btn btn-success m-1">Like</a>
-                  <a href="#" className="btn btn-danger m-1">Dislike</a> */}
+
+                  <Button className="m-2" color="success" variant="contained" onClick={() => handleFollow(x.document_id)}>Follow</Button>
+                  <Button className="m-2" color="grey" variant="contained" onClick={() => handleUnfollow(x.document_id)}>Unfollow</Button>
+
                 </div>
           </div>
         )}

@@ -1,7 +1,7 @@
 
 // @GENERATOR:play-routes-compiler
-// @SOURCE:C:/Users/tmols/Desktop/SWE/scientist-social-network-like-follow-function/ebean-backend/conf/routes
-// @DATE:Mon May 02 00:26:46 CDT 2022
+// @SOURCE:/Users/loganschmitt/scientist-social-network-like-follow-function/ebean-backend/conf/routes
+// @DATE:Mon May 02 01:06:29 CDT 2022
 
 package router
 
@@ -17,37 +17,41 @@ import _root_.play.libs.F
 class Routes(
   override val errorHandler: play.api.http.HttpErrorHandler, 
   // @LINE:6
-  HomeController_1: controllers.HomeController,
+  HomeController_2: controllers.HomeController,
   // @LINE:9
-  UserController_2: controllers.UserController,
+  UserController_3: controllers.UserController,
   // @LINE:21
-  DocumentController_3: controllers.DocumentController,
+  DocumentController_4: controllers.DocumentController,
   // @LINE:30
   LikesController_0: controllers.LikesController,
   // @LINE:40
-  FollowsController_4: controllers.FollowsController,
+  FollowsController_5: controllers.FollowsController,
+  // @LINE:50
+  NotificationsController_1: controllers.NotificationsController,
   val prefix: String
 ) extends GeneratedRouter {
 
    @javax.inject.Inject()
    def this(errorHandler: play.api.http.HttpErrorHandler,
     // @LINE:6
-    HomeController_1: controllers.HomeController,
+    HomeController_2: controllers.HomeController,
     // @LINE:9
-    UserController_2: controllers.UserController,
+    UserController_3: controllers.UserController,
     // @LINE:21
-    DocumentController_3: controllers.DocumentController,
+    DocumentController_4: controllers.DocumentController,
     // @LINE:30
     LikesController_0: controllers.LikesController,
     // @LINE:40
-    FollowsController_4: controllers.FollowsController
-  ) = this(errorHandler, HomeController_1, UserController_2, DocumentController_3, LikesController_0, FollowsController_4, "/")
+    FollowsController_5: controllers.FollowsController,
+    // @LINE:50
+    NotificationsController_1: controllers.NotificationsController
+  ) = this(errorHandler, HomeController_2, UserController_3, DocumentController_4, LikesController_0, FollowsController_5, NotificationsController_1, "/")
 
   import ReverseRouteContext.empty
 
   def withPrefix(prefix: String): Routes = {
     router.RoutesPrefix.setPrefix(prefix)
-    new Routes(errorHandler, HomeController_1, UserController_2, DocumentController_3, LikesController_0, FollowsController_4, prefix)
+    new Routes(errorHandler, HomeController_2, UserController_3, DocumentController_4, LikesController_0, FollowsController_5, NotificationsController_1, prefix)
   }
 
   private[this] val defaultPrefix: String = {
@@ -71,6 +75,10 @@ class Routes(
     ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """addFollow/""" + "$" + """document_id<[^/]+>""", """controllers.FollowsController.addFollow(document_id:Long)"""),
     ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """unfollow/""" + "$" + """document_id<[^/]+>""", """controllers.FollowsController.unfollow(document_id:Long)"""),
     ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """follows/""" + "$" + """user_id<[^/]+>""", """controllers.FollowsController.getFollowsbyId(user_id:Long)"""),
+    ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """notifications""", """controllers.NotificationsController.getNotifications"""),
+    ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """addNotification/""" + "$" + """document_id<[^/]+>""", """controllers.NotificationsController.turnonNotifications(document_id:Long)"""),
+    ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """removeNotification/""" + "$" + """document_id<[^/]+>""", """controllers.NotificationsController.turnoffNotifications(document_id:Long)"""),
+    ("""POST""", this.prefix + (if(this.prefix.endsWith("/")) "" else "/") + """notifications/""" + "$" + """user_id<[^/]+>""", """controllers.NotificationsController.getNotificationsbyId(user_id:Long)"""),
     Nil
   ).foldLeft(List.empty[(String,String,String)]) { (s,e) => e.asInstanceOf[Any] match {
     case r @ (_,_,_) => s :+ r.asInstanceOf[(String,String,String)]
@@ -83,7 +91,7 @@ class Routes(
     PathPattern(List(StaticPart(this.prefix)))
   )
   private[this] lazy val controllers_HomeController_index0_invoker = createInvoker(
-    HomeController_1.index,
+    HomeController_2.index,
     HandlerDef(this.getClass.getClassLoader,
       "router",
       "controllers.HomeController",
@@ -100,7 +108,7 @@ class Routes(
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("login")))
   )
   private[this] lazy val controllers_UserController_authenticate1_invoker = createInvoker(
-    UserController_2.authenticate(),
+    UserController_3.authenticate(),
     HandlerDef(this.getClass.getClassLoader,
       "router",
       "controllers.UserController",
@@ -117,7 +125,7 @@ class Routes(
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("signup")))
   )
   private[this] lazy val controllers_UserController_registerNew2_invoker = createInvoker(
-    UserController_2.registerNew(),
+    UserController_3.registerNew(),
     HandlerDef(this.getClass.getClassLoader,
       "router",
       "controllers.UserController",
@@ -134,7 +142,7 @@ class Routes(
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("users")))
   )
   private[this] lazy val controllers_UserController_getUsers3_invoker = createInvoker(
-    UserController_2.getUsers,
+    UserController_3.getUsers,
     HandlerDef(this.getClass.getClassLoader,
       "router",
       "controllers.UserController",
@@ -151,7 +159,7 @@ class Routes(
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("users/"), DynamicPart("id", """[^/]+""",true)))
   )
   private[this] lazy val controllers_UserController_getUser4_invoker = createInvoker(
-    UserController_2.getUser(fakeValue[Long]),
+    UserController_3.getUser(fakeValue[Long]),
     HandlerDef(this.getClass.getClassLoader,
       "router",
       "controllers.UserController",
@@ -168,7 +176,7 @@ class Routes(
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("documents")))
   )
   private[this] lazy val controllers_DocumentController_getDocuments5_invoker = createInvoker(
-    DocumentController_3.getDocuments,
+    DocumentController_4.getDocuments,
     HandlerDef(this.getClass.getClassLoader,
       "router",
       "controllers.DocumentController",
@@ -185,7 +193,7 @@ class Routes(
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("addDocument")))
   )
   private[this] lazy val controllers_DocumentController_addDocument6_invoker = createInvoker(
-    DocumentController_3.addDocument,
+    DocumentController_4.addDocument,
     HandlerDef(this.getClass.getClassLoader,
       "router",
       "controllers.DocumentController",
@@ -202,7 +210,7 @@ class Routes(
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("documents/"), DynamicPart("document_id", """[^/]+""",true)))
   )
   private[this] lazy val controllers_DocumentController_getDocument7_invoker = createInvoker(
-    DocumentController_3.getDocument(fakeValue[Long]),
+    DocumentController_4.getDocument(fakeValue[Long]),
     HandlerDef(this.getClass.getClassLoader,
       "router",
       "controllers.DocumentController",
@@ -287,7 +295,7 @@ class Routes(
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("follows")))
   )
   private[this] lazy val controllers_FollowsController_getFollows12_invoker = createInvoker(
-    FollowsController_4.getFollows,
+    FollowsController_5.getFollows,
     HandlerDef(this.getClass.getClassLoader,
       "router",
       "controllers.FollowsController",
@@ -304,7 +312,7 @@ class Routes(
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("addFollow/"), DynamicPart("document_id", """[^/]+""",true)))
   )
   private[this] lazy val controllers_FollowsController_addFollow13_invoker = createInvoker(
-    FollowsController_4.addFollow(fakeValue[Long]),
+    FollowsController_5.addFollow(fakeValue[Long]),
     HandlerDef(this.getClass.getClassLoader,
       "router",
       "controllers.FollowsController",
@@ -321,7 +329,7 @@ class Routes(
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("unfollow/"), DynamicPart("document_id", """[^/]+""",true)))
   )
   private[this] lazy val controllers_FollowsController_unfollow14_invoker = createInvoker(
-    FollowsController_4.unfollow(fakeValue[Long]),
+    FollowsController_5.unfollow(fakeValue[Long]),
     HandlerDef(this.getClass.getClassLoader,
       "router",
       "controllers.FollowsController",
@@ -333,12 +341,12 @@ class Routes(
     )
   )
 
-  // @LINE:46
+  // @LINE:47
   private[this] lazy val controllers_FollowsController_getFollowsbyId15_route = Route("POST",
     PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("follows/"), DynamicPart("user_id", """[^/]+""",true)))
   )
   private[this] lazy val controllers_FollowsController_getFollowsbyId15_invoker = createInvoker(
-    FollowsController_4.getFollowsbyId(fakeValue[Long]),
+    FollowsController_5.getFollowsbyId(fakeValue[Long]),
     HandlerDef(this.getClass.getClassLoader,
       "router",
       "controllers.FollowsController",
@@ -350,55 +358,123 @@ class Routes(
     )
   )
 
+  // @LINE:50
+  private[this] lazy val controllers_NotificationsController_getNotifications16_route = Route("POST",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("notifications")))
+  )
+  private[this] lazy val controllers_NotificationsController_getNotifications16_invoker = createInvoker(
+    NotificationsController_1.getNotifications,
+    HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.NotificationsController",
+      "getNotifications",
+      Nil,
+      "POST",
+      """Get all notifications""",
+      this.prefix + """notifications"""
+    )
+  )
+
+  // @LINE:52
+  private[this] lazy val controllers_NotificationsController_turnonNotifications17_route = Route("POST",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("addNotification/"), DynamicPart("document_id", """[^/]+""",true)))
+  )
+  private[this] lazy val controllers_NotificationsController_turnonNotifications17_invoker = createInvoker(
+    NotificationsController_1.turnonNotifications(fakeValue[Long]),
+    HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.NotificationsController",
+      "turnonNotifications",
+      Seq(classOf[Long]),
+      "POST",
+      """Add Like""",
+      this.prefix + """addNotification/""" + "$" + """document_id<[^/]+>"""
+    )
+  )
+
+  // @LINE:54
+  private[this] lazy val controllers_NotificationsController_turnoffNotifications18_route = Route("POST",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("removeNotification/"), DynamicPart("document_id", """[^/]+""",true)))
+  )
+  private[this] lazy val controllers_NotificationsController_turnoffNotifications18_invoker = createInvoker(
+    NotificationsController_1.turnoffNotifications(fakeValue[Long]),
+    HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.NotificationsController",
+      "turnoffNotifications",
+      Seq(classOf[Long]),
+      "POST",
+      """Unlike""",
+      this.prefix + """removeNotification/""" + "$" + """document_id<[^/]+>"""
+    )
+  )
+
+  // @LINE:56
+  private[this] lazy val controllers_NotificationsController_getNotificationsbyId19_route = Route("POST",
+    PathPattern(List(StaticPart(this.prefix), StaticPart(this.defaultPrefix), StaticPart("notifications/"), DynamicPart("user_id", """[^/]+""",true)))
+  )
+  private[this] lazy val controllers_NotificationsController_getNotificationsbyId19_invoker = createInvoker(
+    NotificationsController_1.getNotificationsbyId(fakeValue[Long]),
+    HandlerDef(this.getClass.getClassLoader,
+      "router",
+      "controllers.NotificationsController",
+      "getNotificationsbyId",
+      Seq(classOf[Long]),
+      "POST",
+      """Get all notifications by a user""",
+      this.prefix + """notifications/""" + "$" + """user_id<[^/]+>"""
+    )
+  )
+
 
   def routes: PartialFunction[RequestHeader, Handler] = {
   
     // @LINE:6
     case controllers_HomeController_index0_route(params) =>
       call { 
-        controllers_HomeController_index0_invoker.call(HomeController_1.index)
+        controllers_HomeController_index0_invoker.call(HomeController_2.index)
       }
   
     // @LINE:9
     case controllers_UserController_authenticate1_route(params) =>
       call { 
-        controllers_UserController_authenticate1_invoker.call(UserController_2.authenticate())
+        controllers_UserController_authenticate1_invoker.call(UserController_3.authenticate())
       }
   
     // @LINE:12
     case controllers_UserController_registerNew2_route(params) =>
       call { 
-        controllers_UserController_registerNew2_invoker.call(UserController_2.registerNew())
+        controllers_UserController_registerNew2_invoker.call(UserController_3.registerNew())
       }
   
     // @LINE:15
     case controllers_UserController_getUsers3_route(params) =>
       call { 
-        controllers_UserController_getUsers3_invoker.call(UserController_2.getUsers)
+        controllers_UserController_getUsers3_invoker.call(UserController_3.getUsers)
       }
   
     // @LINE:18
     case controllers_UserController_getUser4_route(params) =>
       call(params.fromPath[Long]("id", None)) { (id) =>
-        controllers_UserController_getUser4_invoker.call(UserController_2.getUser(id))
+        controllers_UserController_getUser4_invoker.call(UserController_3.getUser(id))
       }
   
     // @LINE:21
     case controllers_DocumentController_getDocuments5_route(params) =>
       call { 
-        controllers_DocumentController_getDocuments5_invoker.call(DocumentController_3.getDocuments)
+        controllers_DocumentController_getDocuments5_invoker.call(DocumentController_4.getDocuments)
       }
   
     // @LINE:24
     case controllers_DocumentController_addDocument6_route(params) =>
       call { 
-        controllers_DocumentController_addDocument6_invoker.call(DocumentController_3.addDocument)
+        controllers_DocumentController_addDocument6_invoker.call(DocumentController_4.addDocument)
       }
   
     // @LINE:27
     case controllers_DocumentController_getDocument7_route(params) =>
       call(params.fromPath[Long]("document_id", None)) { (document_id) =>
-        controllers_DocumentController_getDocument7_invoker.call(DocumentController_3.getDocument(document_id))
+        controllers_DocumentController_getDocument7_invoker.call(DocumentController_4.getDocument(document_id))
       }
   
     // @LINE:30
@@ -428,25 +504,49 @@ class Routes(
     // @LINE:40
     case controllers_FollowsController_getFollows12_route(params) =>
       call { 
-        controllers_FollowsController_getFollows12_invoker.call(FollowsController_4.getFollows)
+        controllers_FollowsController_getFollows12_invoker.call(FollowsController_5.getFollows)
       }
   
     // @LINE:42
     case controllers_FollowsController_addFollow13_route(params) =>
       call(params.fromPath[Long]("document_id", None)) { (document_id) =>
-        controllers_FollowsController_addFollow13_invoker.call(FollowsController_4.addFollow(document_id))
+        controllers_FollowsController_addFollow13_invoker.call(FollowsController_5.addFollow(document_id))
       }
   
     // @LINE:44
     case controllers_FollowsController_unfollow14_route(params) =>
       call(params.fromPath[Long]("document_id", None)) { (document_id) =>
-        controllers_FollowsController_unfollow14_invoker.call(FollowsController_4.unfollow(document_id))
+        controllers_FollowsController_unfollow14_invoker.call(FollowsController_5.unfollow(document_id))
       }
   
-    // @LINE:46
+    // @LINE:47
     case controllers_FollowsController_getFollowsbyId15_route(params) =>
       call(params.fromPath[Long]("user_id", None)) { (user_id) =>
-        controllers_FollowsController_getFollowsbyId15_invoker.call(FollowsController_4.getFollowsbyId(user_id))
+        controllers_FollowsController_getFollowsbyId15_invoker.call(FollowsController_5.getFollowsbyId(user_id))
+      }
+  
+    // @LINE:50
+    case controllers_NotificationsController_getNotifications16_route(params) =>
+      call { 
+        controllers_NotificationsController_getNotifications16_invoker.call(NotificationsController_1.getNotifications)
+      }
+  
+    // @LINE:52
+    case controllers_NotificationsController_turnonNotifications17_route(params) =>
+      call(params.fromPath[Long]("document_id", None)) { (document_id) =>
+        controllers_NotificationsController_turnonNotifications17_invoker.call(NotificationsController_1.turnonNotifications(document_id))
+      }
+  
+    // @LINE:54
+    case controllers_NotificationsController_turnoffNotifications18_route(params) =>
+      call(params.fromPath[Long]("document_id", None)) { (document_id) =>
+        controllers_NotificationsController_turnoffNotifications18_invoker.call(NotificationsController_1.turnoffNotifications(document_id))
+      }
+  
+    // @LINE:56
+    case controllers_NotificationsController_getNotificationsbyId19_route(params) =>
+      call(params.fromPath[Long]("user_id", None)) { (user_id) =>
+        controllers_NotificationsController_getNotificationsbyId19_invoker.call(NotificationsController_1.getNotificationsbyId(user_id))
       }
   }
 }

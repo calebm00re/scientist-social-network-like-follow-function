@@ -42,6 +42,7 @@ POST    /follows                        controllers.FollowsController.getFollows
 POST   /addFollow/:document_id          controllers.FollowsController.addFollow(document_id: Long)
 #Unlike
 POST    /unfollow/:document_id          controllers.FollowsController.unfollow(document_id: Long)
+
 #Get all likes by a user
 POST     /follows/:user_id                 controllers.FollowsController.getFollowsbyId(user_id: Long)
 

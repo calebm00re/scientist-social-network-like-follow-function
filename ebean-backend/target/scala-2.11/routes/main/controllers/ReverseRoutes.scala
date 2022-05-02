@@ -1,7 +1,7 @@
 
 // @GENERATOR:play-routes-compiler
-// @SOURCE:C:/Users/tmols/Desktop/SWE/scientist-social-network-like-follow-function/ebean-backend/conf/routes
-// @DATE:Mon May 02 00:26:46 CDT 2022
+// @SOURCE:/Users/loganschmitt/scientist-social-network-like-follow-function/ebean-backend/conf/routes
+// @DATE:Mon May 02 01:06:29 CDT 2022
 
 import play.api.mvc.{ QueryStringBindable, PathBindable, Call, JavascriptLiteral }
 import play.core.routing.{ HandlerDef, ReverseRouteContext, queryString, dynamicString }
@@ -69,6 +69,39 @@ package controllers {
     def registerNew(): Call = {
       import ReverseRouteContext.empty
       Call("POST", _prefix + { _defaultPrefix } + "signup")
+    }
+  
+  }
+
+  // @LINE:50
+  class ReverseNotificationsController(_prefix: => String) {
+    def _defaultPrefix: String = {
+      if (_prefix.endsWith("/")) "" else "/"
+    }
+
+  
+    // @LINE:56
+    def getNotificationsbyId(user_id:Long): Call = {
+      import ReverseRouteContext.empty
+      Call("POST", _prefix + { _defaultPrefix } + "notifications/" + implicitly[PathBindable[Long]].unbind("user_id", user_id))
+    }
+  
+    // @LINE:50
+    def getNotifications(): Call = {
+      import ReverseRouteContext.empty
+      Call("POST", _prefix + { _defaultPrefix } + "notifications")
+    }
+  
+    // @LINE:54
+    def turnoffNotifications(document_id:Long): Call = {
+      import ReverseRouteContext.empty
+      Call("POST", _prefix + { _defaultPrefix } + "removeNotification/" + implicitly[PathBindable[Long]].unbind("document_id", document_id))
+    }
+  
+    // @LINE:52
+    def turnonNotifications(document_id:Long): Call = {
+      import ReverseRouteContext.empty
+      Call("POST", _prefix + { _defaultPrefix } + "addNotification/" + implicitly[PathBindable[Long]].unbind("document_id", document_id))
     }
   
   }
@@ -146,7 +179,7 @@ package controllers {
       Call("POST", _prefix + { _defaultPrefix } + "addFollow/" + implicitly[PathBindable[Long]].unbind("document_id", document_id))
     }
   
-    // @LINE:46
+    // @LINE:47
     def getFollowsbyId(user_id:Long): Call = {
       import ReverseRouteContext.empty
       Call("POST", _prefix + { _defaultPrefix } + "follows/" + implicitly[PathBindable[Long]].unbind("user_id", user_id))

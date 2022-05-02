@@ -1,7 +1,7 @@
 
 // @GENERATOR:play-routes-compiler
-// @SOURCE:C:/Users/tmols/Desktop/SWE/scientist-social-network-like-follow-function/ebean-backend/conf/routes
-// @DATE:Mon May 02 00:26:46 CDT 2022
+// @SOURCE:/Users/loganschmitt/scientist-social-network-like-follow-function/ebean-backend/conf/routes
+// @DATE:Mon May 02 01:06:29 CDT 2022
 
 import play.api.routing.JavaScriptReverseRoute
 import play.api.mvc.{ QueryStringBindable, PathBindable, Call, JavascriptLiteral }
@@ -99,6 +99,56 @@ package controllers.javascript {
       """
         function() {
           return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "signup"})
+        }
+      """
+    )
+  
+  }
+
+  // @LINE:50
+  class ReverseNotificationsController(_prefix: => String) {
+
+    def _defaultPrefix: String = {
+      if (_prefix.endsWith("/")) "" else "/"
+    }
+
+  
+    // @LINE:56
+    def getNotificationsbyId: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.NotificationsController.getNotificationsbyId",
+      """
+        function(user_id0) {
+          return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "notifications/" + (""" + implicitly[PathBindable[Long]].javascriptUnbind + """)("user_id", user_id0)})
+        }
+      """
+    )
+  
+    // @LINE:50
+    def getNotifications: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.NotificationsController.getNotifications",
+      """
+        function() {
+          return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "notifications"})
+        }
+      """
+    )
+  
+    // @LINE:54
+    def turnoffNotifications: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.NotificationsController.turnoffNotifications",
+      """
+        function(document_id0) {
+          return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "removeNotification/" + (""" + implicitly[PathBindable[Long]].javascriptUnbind + """)("document_id", document_id0)})
+        }
+      """
+    )
+  
+    // @LINE:52
+    def turnonNotifications: JavaScriptReverseRoute = JavaScriptReverseRoute(
+      "controllers.NotificationsController.turnonNotifications",
+      """
+        function(document_id0) {
+          return _wA({method:"POST", url:"""" + _prefix + { _defaultPrefix } + """" + "addNotification/" + (""" + implicitly[PathBindable[Long]].javascriptUnbind + """)("document_id", document_id0)})
         }
       """
     )
@@ -213,7 +263,7 @@ package controllers.javascript {
       """
     )
   
-    // @LINE:46
+    // @LINE:47
     def getFollowsbyId: JavaScriptReverseRoute = JavaScriptReverseRoute(
       "controllers.FollowsController.getFollowsbyId",
       """
