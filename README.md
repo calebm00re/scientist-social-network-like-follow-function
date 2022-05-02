@@ -43,7 +43,7 @@ Insert into document (title, author, text) values
 ### Navigating our repository
 Our files for our frontend pages that will need to be edited for future functionality integration are located in the following files: like_follow -> src -> pages -> (Home, Likes, Follows, and Notifications js files)
 
-Our files for out backend routes and functionality might need updating for future integration and can be found here: 
+Our files for out backend routes and functionality might need updating for future integration and can be found here: ebean-backend
 
 ## How to run our functions
 
