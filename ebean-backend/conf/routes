@@ -19,7 +19,10 @@ GET     /users                        controllers.UserController.getUsers
 GET     /users/:id                       controllers.UserController.getUser(id: Long)
 
 #Get all documents
-GET    /documents                    controllers.DocumentController.getDocuments
+POST    /documents                    controllers.DocumentController.getDocuments
+
+#add document
+POST    /addDocument                    controllers.DocumentController.addDocument
 
 #Get document by document_id
 GET     /documents/:document_id         controllers.DocumentController.getDocument(document_id: Long)

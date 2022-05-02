@@ -39,7 +39,6 @@ public class UserController extends Controller {
 
     }
 
-
     /**
      * When a user register, check if the username is taken
      * save to database if valid
