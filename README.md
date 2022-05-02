@@ -45,9 +45,5 @@ Our files for our frontend pages that will need to be edited for future function
 
 Our files for out backend routes and functionality might need updating for future integration and can be found here: ebean-backend
 
-## How to run our functions
-
-console within the file directory like_follow:
-```
-npm start
-```
+### Continuation in the future
+In the future we hope our team or others can integrate these functions into the social scientist network as a whole
